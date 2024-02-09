@@ -43,4 +43,40 @@ function addNewTodo(list, todo) {
       item.parentNode.classList.remove('complete');
     });
   }
+
+  function handleCheckAll(e) {
+    e.stopPropagation();
+    checkAll();
+  }
   
+  function checkAll() {
+    let inputs = document.querySelectorAll('input[type=checkbox]');
+    inputs.forEach((item) => {
+      item.checked = 1;
+      item.parentNode.classList.add('complete');
+    });
+  }
+
+  function handleDeleteCompletedItems(e) {
+    e.stopPropagation();
+    let inputs = document.querySelectorAll('input[type=checkbox]')
+    inputs.forEach((item) => {
+      if (item.checked = 1) {
+        deleteTodo(inputs, item);
+      }
+    })
+  }
+
+  function deleteAllCompleted() {
+    let inputs = document.querySelectorAll('input[type=checkbox]')
+    inputs.forEach((item) => {
+      if (item.checked = 1) {
+        deleteTodo(inputs, item);
+      }
+    })
+  }
+
+  function deleteTodo(list, item) {
+    //list.removeChild(item);
+    list.remove(item);
+  }
