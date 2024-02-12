@@ -57,26 +57,12 @@ function addNewTodo(list, todo) {
     });
   }
 
-  function handleDeleteCompletedItems(e) {
+  function deleteCompletedItems(e) {
     e.stopPropagation();
-    let inputs = document.querySelectorAll('input[type=checkbox]')
-    inputs.forEach((item) => {
-      if (item.checked = 1) {
-        deleteTodo(inputs, item);
-      }
-    })
-  }
+    var list = document.querySelectorAll('.complete');
 
-  function deleteAllCompleted() {
-    let inputs = document.querySelectorAll('input[type=checkbox]')
-    inputs.forEach((item) => {
-      if (item.checked = 1) {
-        deleteTodo(inputs, item);
-      }
-    })
-  }
+    list.forEach((item) => {
+      item.remove()
+    });
 
-  function deleteTodo(list, item) {
-    //list.removeChild(item);
-    list.remove(item);
   }
