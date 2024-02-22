@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 function a(b, c) {
   if (b[0][0] == c && b[0][1] == c && b[0][2] == c) {
