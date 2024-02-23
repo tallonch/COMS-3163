@@ -1,35 +1,35 @@
 "use strict";
 
-function a(b, c) {
-  if (b[0][0] == c && b[0][1] == c && b[0][2] == c) {
+function boardHasWinner(tickTackToeBoard, playerValue) {
+  if (tickTackToeBoard[0][0] == playerValue && tickTackToeBoard[0][1] == playerValue && tickTackToeBoard[0][2] == playerValue) {
     return true;
   }
 
-  if (b[1][0] == c && b[1][1] == c && b[1][2] == c) {
+  if (tickTackToeBoard[1][0] == playerValue && tickTackToeBoard[1][1] == playerValue && tickTackToeBoard[1][2] == playerValue) {
     return true;
   }
 
-  if (b[2][0] == c && b[2][1] == c && b[2][2] == c) {
+  if (tickTackToeBoard[2][0] == playerValue && tickTackToeBoard[2][1] == playerValue && tickTackToeBoard[2][2] == playerValue) {
     return true;
   }
 
-  if (b[0][0] == c && b[1][0] == c && b[2][0] == c) {
+  if (tickTackToeBoard[0][0] == playerValue && tickTackToeBoard[1][0] == playerValue && tickTackToeBoard[2][0] == playerValue) {
     return true;
   }
 
-  if (b[0][1] == c && b[1][1] == c && b[2][1] == c) {
+  if (tickTackToeBoard[0][1] == playerValue && tickTackToeBoard[1][1] == playerValue && tickTackToeBoard[2][1] == playerValue) {
     return true;
   }
 
-  if (b[0][2] == c && b[1][2] == c && b[2][2] == c) {
+  if (tickTackToeBoard[0][2] == playerValue && tickTackToeBoard[1][2] == playerValue && tickTackToeBoard[2][2] == playerValue) {
     return true;
   }
 
-  if (b[0][0] == c && b[1][1] == c && b[2][2] == c) {
+  if (tickTackToeBoard[0][0] == playerValue && tickTackToeBoard[1][1] == playerValue && tickTackToeBoard[2][2] == playerValue) {
     return true;
   }
 
-  if (b[0][2] == c && b[1][1] == c && b[2][0] == c) {
+  if (tickTackToeBoard[0][2] == playerValue && tickTackToeBoard[1][1] == playerValue && tickTackToeBoard[2][0] == playerValue) {
     return true;
   }
 
@@ -37,7 +37,7 @@ function a(b, c) {
 }
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [1, 1, 1],
       [0, 0, 0],
@@ -48,7 +48,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 0],
       [1, 1, 1],
@@ -59,7 +59,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 0],
       [0, 0, 0],
@@ -70,7 +70,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [1, 0, 0],
       [1, 0, 0],
@@ -81,7 +81,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 1, 0],
       [0, 1, 0],
@@ -92,7 +92,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 1],
       [0, 0, 1],
@@ -103,7 +103,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [1, 0, 0],
       [0, 1, 0],
@@ -114,7 +114,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 1],
       [0, 1, 0],
@@ -125,7 +125,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [2, 2, 2],
       [0, 0, 0],
@@ -136,7 +136,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 0],
       [2, 2, 2],
@@ -147,7 +147,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 0],
       [0, 0, 0],
@@ -158,7 +158,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [2, 0, 0],
       [2, 0, 0],
@@ -169,7 +169,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 2, 0],
       [0, 2, 0],
@@ -180,7 +180,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 2],
       [0, 0, 2],
@@ -191,7 +191,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [2, 0, 0],
       [0, 2, 0],
@@ -202,7 +202,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [0, 0, 2],
       [0, 2, 0],
@@ -213,7 +213,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [1, 2, 1],
       [1, 2, 2],
@@ -224,7 +224,7 @@ console.log(
 );
 
 console.log(
-  a(
+  boardHasWinner(
     [
       [1, 2, 1],
       [1, 2, 2],
