@@ -11,5 +11,8 @@
   "license": "ISC",
   "volta": {
     "node": "20.11.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }
