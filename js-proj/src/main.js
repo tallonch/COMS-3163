@@ -56,10 +56,21 @@ function startQuiz() {
   setNextQuestion();
 }
 
-function setNextQuestion() {
+function endQuiz() {
   resetState();
-  correctAnswer = shuffledQuestions[currentQuestionIndex].answer;
-  showQuestion(shuffledQuestions[currentQuestionIndex]);
+  questionElement.innerText = "Here's your final score!";
+  answerContainerElement.innerText = totalCorrectAnswers + "/" + totalQuestions;
+  answerContainerElement.classList.add("endText");
+}
+
+function setNextQuestion() {
+  if (currentQuestionIndex < totalQuestions) {
+    resetState();
+    correctAnswer = shuffledQuestions[currentQuestionIndex].answer;
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+  } else {
+    endQuiz();
+  }
 }
 
 function showQuestion(question) {

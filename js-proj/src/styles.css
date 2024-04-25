@@ -63,6 +63,13 @@ body {
   align-items: center;
 }
 
+.endText {
+  font-size: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .hide {
   display: none;
 }
