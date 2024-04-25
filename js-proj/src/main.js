@@ -64,7 +64,8 @@ function setNextQuestion() {
 
 function showQuestion(question) {
   questionElement.innerText = question.question;
-  if (question.type == multipleChoice) {
+  console.log(question.type);
+  if (question.type === "multipleChoice") {
     question.options.forEach((option) => {
       const button = document.createElement("button");
       button.innerText = option;
@@ -72,15 +73,18 @@ function showQuestion(question) {
       button.addEventListener("click", selectAnswer);
       answerContainerElement.appendChild(button);
     });
-  } else {
-  }
-  question.options.forEach((option) => {
+  } else if (question.type === "fillInTheBlank") {
+    const textInput = document.createElement("input");
+    textInput.setAttribute("type", "text");
+    textInput.setAttribute("id", "inputTextField");
+    textInput.classList.add("textInput");
+    answerContainerElement.appendChild(textInput);
     const button = document.createElement("button");
-    button.innerText = option;
+    button.innerText = "Enter";
     button.classList.add("btn");
-    button.addEventListener("click", selectAnswer);
+    button.addEventListener("click", enterAnswer);
     answerContainerElement.appendChild(button);
-  });
+  }
 }
 
 function selectAnswer(e) {
@@ -90,6 +94,15 @@ function selectAnswer(e) {
   }
   console.log(totalCorrectAnswers);
   console.log(totalQuestions);
+  nextButton.classList.remove("hide");
+}
+
+function enterAnswer() {
+  const textAnswer = document.getElementById("inputTextField").value;
+  console.log(textAnswer);
+  if (textAnswer.toLowerCase() == correctAnswer.toLowerCase()) {
+    totalCorrectAnswers += 1;
+  }
   nextButton.classList.remove("hide");
 }
 
