@@ -33,6 +33,43 @@ const questions = [
     options: ["True", "False"],
     answer: "True",
   },
+  {
+    type: "multipleChoice",
+    question: "What is the largest US state (by landmass)?",
+    options: ["Texas", "Alaska", "California"],
+    answer: "Alaska",
+  },
+  {
+    type: "multipleChoice",
+    question: "Tea was invented in China",
+    options: ["True", "False"],
+    answer: "True",
+  },
+  {
+    type: "fillInTheBlank",
+    question: "2 + 2 =  __________.",
+    answer: "4",
+  },
+  {
+    type: "fillInTheBlank",
+    question: "What color is the sky? __________.",
+    answer: "Blue",
+  },
+  {
+    type: "multipleChoice",
+    question: "What planet is closest to the Sun?",
+    options: [
+      "Saturn",
+      "Uranus",
+      "Jupiter",
+      "Earth",
+      "Mars",
+      "Mercury",
+      "Venus",
+      "Neptune",
+    ],
+    answer: "Mercury",
+  },
 ];
 
 let shuffledQuestions,
@@ -50,7 +87,7 @@ nextButton.addEventListener("click", () => {
 function startQuiz() {
   console.log("Started");
   startButton.classList.add("hide");
-  shuffledQuestions = questions.sort(() => Math.random - 0.5);
+  shuffledQuestions = shuffle(questions);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
@@ -61,6 +98,14 @@ function endQuiz() {
   questionElement.innerText = "Here's your final score!";
   answerContainerElement.innerText = totalCorrectAnswers + "/" + totalQuestions;
   answerContainerElement.classList.add("endText");
+}
+
+function shuffle(questionsList) {
+  let shuffled = questionsList
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+  return shuffled;
 }
 
 function setNextQuestion() {
