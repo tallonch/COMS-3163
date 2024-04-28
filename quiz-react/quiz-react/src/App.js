@@ -75,14 +75,39 @@ function App() {
   const [showScore, setShowScore] = useState(false);
   const [showText, setShowText] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const handleAnswerBtnClick = (selectedAnswer) => {
+    if (selectedAnswer === questions[currentQuestion].answer) {
+      setScore(score + 1);
+
+      const nextQuestion = currentQuestion + 1;
+
+      if (nextQuestion < questions.length) {
+        setCurrentQuestion(nextQuestion);
+      }
+    }
+  };
+
   return (
     <>
       <div className="quiz-app">
         <>
           <div className="question-container">
-            <div className="question-text">Question</div>
+            <div className="question-text">
+              {questions[currentQuestion].question}
+            </div>
+            <div className="answer-container">
+              {questions[currentQuestion].options.map((option) => (
+                <button
+                  className="answer-btn"
+                  key={option}
+                  onClick={() => handleAnswerBtnClick(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="answer-container">Answer</div>
         </>
       </div>
     </>
