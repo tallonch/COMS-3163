@@ -1,6 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+let showMultipleChoice = true;
 
 const questions = [
   {
@@ -73,42 +74,101 @@ const questions = [
 function App() {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [showText, setShowText] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [textInputValue, setTextInputValue] = useState("");
+
+  useEffect(() => {
+    console.log(score);
+  });
+
+  const textChange = (event) => {
+    console.log(event.target.value);
+    const newText = event.target.value;
+    setTextInputValue(newText);
+  };
+
+  const findQuestionType = (questionIndex) => {
+    if (questions[questionIndex].type === "multipleChoice") {
+      showMultipleChoice = true;
+    } else {
+      showMultipleChoice = false;
+    }
+  };
 
   const handleAnswerBtnClick = (selectedAnswer) => {
     if (selectedAnswer === questions[currentQuestion].answer) {
-      setScore(score + 1);
-
-      const nextQuestion = currentQuestion + 1;
-
-      if (nextQuestion < questions.length) {
-        setCurrentQuestion(nextQuestion);
-      }
+      setScore((score) => score + 1);
     }
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < questions.length) {
+      findQuestionType(nextQuestion);
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowScore(true);
+    }
+  };
+
+  const handleEnterBtnClick = () => {
+    console.log(textInputValue);
+    if (textInputValue === questions[currentQuestion].answer) {
+      setScore((score) => score + 1);
+    }
+    const nextQuestion = currentQuestion + 1;
+
+    if (nextQuestion < questions.length) {
+      findQuestionType(nextQuestion);
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowScore(true);
+    }
+    setTextInputValue("");
   };
 
   return (
     <>
       <div className="quiz-app">
-        <>
-          <div className="question-container">
-            <div className="question-text">
-              {questions[currentQuestion].question}
-            </div>
-            <div className="answer-container">
-              {questions[currentQuestion].options.map((option) => (
-                <button
-                  className="answer-btn"
-                  key={option}
-                  onClick={() => handleAnswerBtnClick(option)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+        {showScore ? (
+          <div className="score-section">
+            Your score is {score} out of {questions.length}
           </div>
-        </>
+        ) : (
+          <>
+            <div className="question-container">
+              <div className="question-text">
+                {questions[currentQuestion].question}
+              </div>
+              {showMultipleChoice ? (
+                <div className="answer-container">
+                  {questions[currentQuestion].options.map((option) => (
+                    <button
+                      className="answer-btn"
+                      key={option}
+                      onClick={() => handleAnswerBtnClick(option)}
+                    >
+                      {option}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    id="textInput"
+                    value={textInputValue}
+                    onChange={textChange}
+                  ></input>
+                  <button
+                    className="answer-btn"
+                    onClick={() => handleEnterBtnClick()}
+                  >
+                    Enter
+                  </button>
+                </>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </>
   );
