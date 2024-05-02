@@ -9,11 +9,11 @@ body {
   background-color: darkslategrey;
   padding: 0;
   margin: 0;
-  display: flex;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
   align-items: center;
+  display: grid;
+  grid-template-columns: auto;
 }
 
 .quiz-app {
@@ -23,6 +23,8 @@ body {
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 0 10px 2px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn-grid {
@@ -56,4 +58,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 20px;
 }
