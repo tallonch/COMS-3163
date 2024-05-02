@@ -129,8 +129,8 @@ function App() {
     <>
       <div className="quiz-app">
         {showScore ? (
-          <div className="score-section">
-            Your score is {score} out of {questions.length}
+          <div className="score-container">
+            Your score is {score} out of {questions.length}!
           </div>
         ) : (
           <>
@@ -139,10 +139,10 @@ function App() {
                 {questions[currentQuestion].question}
               </div>
               {showMultipleChoice ? (
-                <div className="answer-container">
+                <div className="answer-container btn-grid">
                   {questions[currentQuestion].options.map((option) => (
                     <button
-                      className="answer-btn"
+                      className="btn"
                       key={option}
                       onClick={() => handleAnswerBtnClick(option)}
                     >
@@ -157,11 +157,9 @@ function App() {
                     id="textInput"
                     value={textInputValue}
                     onChange={textChange}
+                    className="textInput"
                   ></input>
-                  <button
-                    className="answer-btn"
-                    onClick={() => handleEnterBtnClick()}
-                  >
+                  <button className="btn" onClick={() => handleEnterBtnClick()}>
                     Enter
                   </button>
                 </>
